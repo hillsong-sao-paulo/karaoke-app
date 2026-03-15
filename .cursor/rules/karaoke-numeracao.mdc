@@ -1,0 +1,27 @@
+---
+description: Numeração ao adicionar músicas na pasta songs (yt-dlp)
+alwaysApply: true
+---
+
+# Karaoke – Numeração sequencial
+
+Pasta dos vídeos: **`songs/`** (dentro deste repositório). Formato dos arquivos: `NN - Artista - Música.mp4`.
+
+Ao gerar comando de download (yt-dlp) para uma nova música quando o usuário enviar **link do YouTube + nome da música (e artista)**:
+
+1. **Descobrir o número a usar**
+   - Listar os números já usados na pasta `songs/` do projeto. Exemplo (ajuste o caminho se necessário):  
+     `ls -1 songs/*.mp4 2>/dev/null | sed 's/.*\/\([0-9]*\) - .*/\1/' | sort -n`
+   - Ou, com caminho absoluto da pasta do repo:  
+     `ls -1 <caminho-do-repo>/songs/*.mp4 | sed 's/.*\/\([0-9]*\) - .*/\1/' | sort -n`
+   - Se existir **lacuna** (ex.: tem 01,02,04,05 → falta 03), usar o **primeiro número em falta**
+   - Se **não houver lacuna** (01 até N seguidos), usar **N+1**
+
+2. **Não repetir números** – nunca usar um número já existente.
+
+3. **Comando** (Safari, sem playlist, mp4). Usar o caminho absoluto da pasta **songs** do projeto:
+   ```bash
+   cd <caminho-absoluto-do-repo>/songs && yt-dlp --cookies-from-browser safari --no-playlist --merge-output-format mp4 -o "NN - Artista - Música.%(ext)s" "URL"
+   ```
+   Substituir `NN` pelo número obtido no passo 1 (dois dígitos: 01, 02, … 99, 100, 101…).  
+   Se o YouTube exigir login, o usuário pode rodar o comando no Terminal (com acesso aos cookies do Safari).
