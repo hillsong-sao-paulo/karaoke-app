@@ -14,8 +14,8 @@ function getAppIcon() {
   }
 }
 
-// Pasta de vídeos: dentro do app (songs/) para o projeto ser autocontido
-const KARAOKE_DIR = path.join(__dirname, 'songs');
+// Pasta de vídeos: sempre songs/ ao lado de main.js (caminho absoluto)
+const KARAOKE_DIR = path.resolve(__dirname, 'songs');
 
 // Reduz mensagens de erro/warning no terminal (ffmpeg, sysctl, etc.)
 app.commandLine.appendSwitch('enable-logging', 'false');
