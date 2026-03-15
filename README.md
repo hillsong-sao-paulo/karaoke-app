@@ -12,6 +12,20 @@ Você pode filtrar por letra (ex.: M–P), ordenar por A–Z ou Z–A e escolher
 
 ---
 
+## Estrutura do projeto
+
+```
+karaoke-app/
+├── main/           # Processo principal (Electron)
+├── renderer/       # Janela da lista (index.html, renderer.js, preload.js)
+├── player/         # Janela do vídeo (player.html, player-renderer.js, player-preload.js)
+├── scripts/        # Utilitários (ex.: geração do PDF da lista)
+├── assets/         # Recursos (logo, etc.)
+├── build/          # Ícones para build
+├── songs/          # Vídeos de karaokê (não versionados)
+└── docs/           # Documentação e imagens
+```
+
 ## O que você precisa
 
 - **Node.js** ([nodejs.org](https://nodejs.org))
@@ -38,6 +52,8 @@ O app abre **em tela cheia**. A lista fica em um monitor; ao clicar numa música
 
 **Duplo clique (macOS):**  
 Abra a pasta do projeto e dê dois cliques no arquivo **.command** disponível. O Terminal abre e o app sobe em tela cheia.
+
+> **Se o app fechar na hora ou der erro ao rodar no terminal do Cursor:** use o **Terminal do sistema** (Terminal.app) ou o **.command** — alguns ambientes (ex.: Cursor) definem variáveis que fazem o Electron rodar como Node e o app não inicia.
 
 ## Comportamento em tela cheia
 

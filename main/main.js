@@ -1,11 +1,25 @@
-const { app, BrowserWindow, ipcMain, screen, nativeImage } = require('electron');
+const electron = require('electron');
 const path = require('path');
 const fs = require('fs');
-const { generatePdf } = require('./generate-list-pdf.js');
+
+// Quando ELECTRON_RUN_AS_NODE está definido (ex.: terminal do Cursor), require('electron') retorna o caminho do binário, não a API.
+if (typeof electron === 'string' || !electron.app) {
+  console.error('Execute o app pelo Terminal do sistema (não pelo terminal do Cursor):');
+  console.error('  cd karaoke-app && npm start');
+  console.error('Ou dê duplo clique em "Karaokê Sisterhood.command".');
+  if (process.env.ELECTRON_RUN_AS_NODE) {
+    console.error('(ELECTRON_RUN_AS_NODE está definido neste ambiente.)');
+  }
+  process.exit(1);
+}
+
+const { app, BrowserWindow, ipcMain, screen, nativeImage } = electron;
+
+const ROOT_DIR = path.resolve(__dirname, '..');
 
 function getAppIcon() {
   try {
-    const iconPath = path.join(__dirname, 'assets', 'logo.png');
+    const iconPath = path.join(ROOT_DIR, 'assets', 'logo.png');
     if (!fs.existsSync(iconPath)) return undefined;
     const img = nativeImage.createFromPath(iconPath);
     return img.isEmpty() ? undefined : img;
@@ -14,12 +28,14 @@ function getAppIcon() {
   }
 }
 
-// Pasta de vídeos: sempre songs/ ao lado de main.js (caminho absoluto)
-const KARAOKE_DIR = path.resolve(__dirname, 'songs');
+// Pasta de vídeos: songs/ na raiz do projeto
+const KARAOKE_DIR = path.join(ROOT_DIR, 'songs');
 
 // Reduz mensagens de erro/warning no terminal (ffmpeg, sysctl, etc.)
-app.commandLine.appendSwitch('enable-logging', 'false');
-app.commandLine.appendSwitch('disable-logging', 'true');
+if (app && app.commandLine) {
+  app.commandLine.appendSwitch('enable-logging', 'false');
+  app.commandLine.appendSwitch('disable-logging', 'true');
+}
 
 // Lê os vídeos disponíveis na pasta; nome esperado: "01 - Artista - Música.mp4" ou "25 - Nome.mp4"
 function loadSongs() {
@@ -83,14 +99,14 @@ function createPlayerWindow(videoPath) {
     backgroundColor: '#000000',
     ...(icon && { icon }),
     webPreferences: {
-      preload: path.join(__dirname, 'player-preload.js'),
+      preload: path.join(__dirname, '..', 'player', 'player-preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
     },
   });
 
   playerWindow.setMenuBarVisibility(false);
-  playerWindow.loadFile('player.html');
+  playerWindow.loadFile(path.join(__dirname, '..', 'player', 'player.html'));
   playerWindow.on('closed', () => {
     playerWindow = null;
   });
@@ -112,19 +128,24 @@ function createWindow() {
     title: 'Sistema de Karaokê',
     ...(icon && { icon }),
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, '..', 'renderer', 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
     },
   });
 
-  mainWindow.loadFile('index.html');
+  mainWindow.loadFile(path.join(__dirname, '..', 'renderer', 'index.html'));
   mainWindow.setMenuBarVisibility(false);
 }
 
 app.whenReady().then(() => {
   createWindow();
-  try { generatePdf(); } catch (e) { console.error('PDF:', e.message); }
+  try {
+    const { generatePdf } = require('../scripts/generate-list-pdf.js');
+    generatePdf();
+  } catch (e) {
+    console.error('PDF:', e.message);
+  }
   app.on('window-all-closed', () => app.quit());
 });
 

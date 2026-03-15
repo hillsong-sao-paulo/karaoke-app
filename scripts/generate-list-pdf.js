@@ -9,9 +9,10 @@ const fs = require('fs');
 const path = require('path');
 const PDFDocument = require('pdfkit');
 
-// Mesma pasta que o app (songs/) para manter sincronia
-const KARAOKE_DIR = path.join(__dirname, 'songs');
-const OUTPUT_PATH = path.join(__dirname, 'Karaoke-Lista-Impressa.pdf');
+// Raiz do projeto: songs/ e PDF na raiz
+const ROOT_DIR = path.resolve(__dirname, '..');
+const KARAOKE_DIR = path.join(ROOT_DIR, 'songs');
+const OUTPUT_PATH = path.join(ROOT_DIR, 'Karaoke-Lista-Impressa.pdf');
 
 // Margem estilo Word: 2,5 cm ≈ 72 pt (1 inch)
 const MARGIN_PT = 72;
