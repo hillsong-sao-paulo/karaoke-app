@@ -1,16 +1,18 @@
 /**
- * Gera PDF com a lista de músicas da pasta Karaoke para impressão.
- * Margens no estilo Word (2,5 cm). Fonte com suporte a português (acentos, cedilha).
- * Uso: node generate-list-pdf.js
+ * Gera PDF com a lista de músicas da pasta songs/ para impressão (Karaoke-Lista-Impressa.pdf).
+ * Usa a mesma pasta do app para manter sincronia. Margens 2,5 cm, fonte com acentos.
+ * Uso: node generate-list-pdf.js  ou  npm run pdf
+ * Também é executado automaticamente ao abrir o app.
  */
 
 const fs = require('fs');
 const path = require('path');
 const PDFDocument = require('pdfkit');
 
-const KARAOKE_DIR = process.env.KARAOKE_DIR || '/Users/davipeyroton/Documents/Karaoke';
-const LOGO_PATH = path.join(__dirname, '..', 'assets', 'hillsong_logo-71ea17df-cca3-454a-9deb-72b403bc39dd.png');
-const OUTPUT_PATH = path.join(__dirname, 'Karaoke-Sisterhood-Night-Lista.pdf');
+// Mesma pasta que o app (songs/) para manter sincronia
+const KARAOKE_DIR = path.join(__dirname, 'songs');
+const LOGO_PATH = path.join(__dirname, 'assets', 'logo.png');
+const OUTPUT_PATH = path.join(__dirname, 'Karaoke-Lista-Impressa.pdf');
 
 // Margem estilo Word: 2,5 cm ≈ 72 pt (1 inch)
 const MARGIN_PT = 72;
@@ -48,7 +50,8 @@ function generatePdf() {
   const songs = loadSongs();
   if (songs.length === 0) {
     console.error('Nenhuma música encontrada. Verifique a pasta:', KARAOKE_DIR);
-    process.exit(1);
+    if (require.main === module) process.exit(1);
+    return;
   }
 
   const doc = new PDFDocument({
@@ -70,20 +73,23 @@ function generatePdf() {
     doc.font('Helvetica');
   }
 
-  // Logo que você enviou (centralizada no topo, dentro das margens)
+  // Logo no topo (centralizada). Se o formato não for suportado, pula a imagem.
+  doc.y = MARGIN_PT;
   if (fs.existsSync(LOGO_PATH)) {
-    const logoWidth = 150;
-    const logoHeight = 50;
-    doc.image(LOGO_PATH, centerX - logoWidth / 2, MARGIN_PT, { width: logoWidth, height: logoHeight });
-    doc.y = MARGIN_PT + logoHeight + 16;
-  } else {
-    doc.y = MARGIN_PT;
+    try {
+      const logoWidth = 150;
+      const logoHeight = 50;
+      doc.image(LOGO_PATH, centerX - logoWidth / 2, MARGIN_PT, { width: logoWidth, height: logoHeight });
+      doc.y = MARGIN_PT + logoHeight + 16;
+    } catch (_) {
+      doc.y = MARGIN_PT;
+    }
   }
 
   // Título (negrito)
   if (fs.existsSync(FONT_ARIAL_BOLD)) doc.font('ArialBold');
   doc.fontSize(22);
-  doc.text('Karaokê - Sisterhood Night', 0, doc.y, { align: 'center', width: doc.page.width });
+  doc.text('Karaokê - Hillsong São Paulo', 0, doc.y, { align: 'center', width: doc.page.width });
   doc.moveDown(1.2);
   if (fs.existsSync(FONT_ARIAL)) doc.font('Arial');
   else doc.font('Helvetica');
@@ -118,4 +124,8 @@ function generatePdf() {
   });
 }
 
-generatePdf();
+if (require.main === module) {
+  generatePdf();
+}
+
+module.exports = { generatePdf };

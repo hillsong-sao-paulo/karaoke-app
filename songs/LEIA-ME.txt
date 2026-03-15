@@ -1,10 +1,20 @@
 Os arquivos de vídeo (músicas) não estão neste repositório.
 
-Para obter a pasta com os vídeos do karaokê, entre em contato:
+--- Como obter as músicas ---
 
+Opção 1 — Solicitar a pasta pronta
+  Entre em contato e peça o envio dos arquivos:
   • E-mail: davi@hopelabs.com.br
   • WhatsApp: +55 27 99837-3487
+  Depois coloque os .mp4 nesta pasta (songs/).
 
-Solicite o envio dos arquivos e coloque os arquivos .mp4 nesta pasta (songs/).
-O nome de cada arquivo deve seguir o formato: NN - Artista - Nome da Música.mp4
-(ex.: 01 - Abba - Dancing Queen.mp4).
+Opção 2 — Adicionar músicas no Cursor
+  Se você usa o Cursor com este projeto, há regras de contexto que ensinam a adicionar uma música nova:
+  • Cole o link do vídeo do YouTube e informe o nome da música (e artista).
+  • Com o plugin de download do YouTube habilitado, o assistente gera o comando (ex.: yt-dlp) com o número correto e o formato do nome.
+  • A numeração é sempre sequencial (ou preenche lacunas); o nome do arquivo fica: NN - Artista - Música.mp4.
+  Assim você pode baixar e incluir novas músicas direto na pasta songs/ sem precisar pedir o pacote completo.
+
+--- Formato dos arquivos ---
+  Nome obrigatório: NN - Artista - Nome da Música.mp4
+  Exemplo: 01 - Abba - Dancing Queen.mp4

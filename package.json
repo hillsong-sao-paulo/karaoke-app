@@ -6,7 +6,8 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-builder --mac --dir",
-    "dist": "electron-builder --mac"
+    "dist": "electron-builder --mac",
+    "pdf": "node generate-list-pdf.js"
   },
   "build": {
     "appId": "com.hillsong.karaoke-sisterhood",

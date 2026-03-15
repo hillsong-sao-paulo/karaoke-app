@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain, screen, nativeImage } = require('electron');
 const path = require('path');
 const fs = require('fs');
+const { generatePdf } = require('./generate-list-pdf.js');
 
 function getAppIcon() {
   try {
@@ -123,6 +124,7 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow();
+  try { generatePdf(); } catch (e) { console.error('PDF:', e.message); }
   app.on('window-all-closed', () => app.quit());
 });
 
