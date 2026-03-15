@@ -26,9 +26,16 @@ ls -1 songs/*.mp4 2>/dev/null | sed 's/.*\/\([0-9]*\) - .*/\1/' | sort -n
 
 Com o número definido (ex.: 121) e o link do vídeo + artista e nome da música:
 
+**Usando cookies do Safari:**
 ```bash
 cd /caminho/para/karaoke-app/songs
 yt-dlp --cookies-from-browser safari --no-playlist --merge-output-format mp4 -o "121 - Artista - Nome da Música.%(ext)s" "URL_DO_YOUTUBE"
+```
+
+**Usando cookies do Chrome:**
+```bash
+cd /caminho/para/karaoke-app/songs
+yt-dlp --cookies-from-browser chrome --no-playlist --merge-output-format mp4 -o "121 - Artista - Nome da Música.%(ext)s" "URL_DO_YOUTUBE"
 ```
 
 Substitua:
@@ -36,4 +43,4 @@ Substitua:
 - `Artista` e `Nome da Música` pelo artista e título.
 - `URL_DO_YOUTUBE` pelo link do vídeo.
 
-Se o YouTube exigir login, rode o comando no Terminal do Mac (com acesso aos cookies do Safari). O arquivo será salvo em `songs/` e aparecerá no app na próxima vez que você abrir.
+Se o YouTube exigir login, rode o comando no Terminal (com acesso aos cookies do navegador: use `safari` ou `chrome` conforme o navegador em que você está logado). O arquivo será salvo em `songs/` e aparecerá no app na próxima vez que você abrir.
