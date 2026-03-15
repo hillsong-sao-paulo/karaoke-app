@@ -11,7 +11,6 @@ const PDFDocument = require('pdfkit');
 
 // Mesma pasta que o app (songs/) para manter sincronia
 const KARAOKE_DIR = path.join(__dirname, 'songs');
-const LOGO_PATH = path.join(__dirname, 'assets', 'logo.png');
 const OUTPUT_PATH = path.join(__dirname, 'Karaoke-Lista-Impressa.pdf');
 
 // Margem estilo Word: 2,5 cm ≈ 72 pt (1 inch)
@@ -73,23 +72,12 @@ function generatePdf() {
     doc.font('Helvetica');
   }
 
-  // Logo no topo (centralizada). Se o formato não for suportado, pula a imagem.
   doc.y = MARGIN_PT;
-  if (fs.existsSync(LOGO_PATH)) {
-    try {
-      const logoWidth = 150;
-      const logoHeight = 50;
-      doc.image(LOGO_PATH, centerX - logoWidth / 2, MARGIN_PT, { width: logoWidth, height: logoHeight });
-      doc.y = MARGIN_PT + logoHeight + 16;
-    } catch (_) {
-      doc.y = MARGIN_PT;
-    }
-  }
 
   // Título (negrito)
   if (fs.existsSync(FONT_ARIAL_BOLD)) doc.font('ArialBold');
   doc.fontSize(22);
-  doc.text('Karaokê - Hillsong São Paulo', 0, doc.y, { align: 'center', width: doc.page.width });
+  doc.text('Sistema de Karaokê', 0, doc.y, { align: 'center', width: doc.page.width });
   doc.moveDown(1.2);
   if (fs.existsSync(FONT_ARIAL)) doc.font('Arial');
   else doc.font('Helvetica');

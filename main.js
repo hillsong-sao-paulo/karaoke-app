@@ -79,7 +79,7 @@ function createPlayerWindow(videoPath) {
     height,
     fullscreen: true,
     fullscreenable: true,
-    title: 'Karaokê — Reprodução',
+    title: 'Sistema de Karaokê — Reprodução',
     backgroundColor: '#000000',
     ...(icon && { icon }),
     webPreferences: {
@@ -109,7 +109,7 @@ function createWindow() {
     height: Math.min(800, height),
     fullscreen: true,
     fullscreenable: true,
-    title: 'Karaokê - Hillsong São Paulo',
+    title: 'Sistema de Karaokê',
     ...(icon && { icon }),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
