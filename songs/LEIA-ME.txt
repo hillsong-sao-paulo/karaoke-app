@@ -1,0 +1,10 @@
+Os arquivos de vídeo (músicas) não estão neste repositório.
+
+Para obter a pasta com os vídeos do karaokê, entre em contato:
+
+  • E-mail: davi@hopelabs.com.br
+  • WhatsApp: +55 27 99837-3487
+
+Solicite o envio dos arquivos e coloque os arquivos .mp4 nesta pasta (songs/).
+O nome de cada arquivo deve seguir o formato: NN - Artista - Nome da Música.mp4
+(ex.: 01 - Abba - Dancing Queen.mp4).

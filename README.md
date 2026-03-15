@@ -6,7 +6,7 @@ App em tela cheia para usar no evento: lista **só as músicas que existem na pa
 
 - **Node.js** instalado no Mac ([nodejs.org](https://nodejs.org))
 - **Vídeos** na pasta `songs/` (dentro do próprio app).  
-  Nomes no formato: `01 - Artista - Música.mp4`, `25 - Nome da Música.mp4` (número + " - " + título). Coloque os arquivos em `karaoke-app/songs/`.
+  Os arquivos de vídeo não vêm no repositório. Veja o arquivo **`songs/LEIA-ME.txt`** para saber como solicitar a pasta com as músicas (e-mail ou WhatsApp). Nomes no formato: `01 - Artista - Música.mp4`.
 
 ## Instalação (uma vez)
 
