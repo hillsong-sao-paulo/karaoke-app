@@ -7,6 +7,10 @@ songs/*.mp4
 songs/*.mkv
 songs/*.webm
 songs/*.mov
-# 5 vídeos de exemplo (001–005) para testar o app logo após o clone
-!songs/00*.mp4
+# 5 primeiras músicas reais para testar o app logo após o clone
+!songs/01 - Abba - Dancing Queen.mp4
+!songs/02 - Adriana Calcanhotto - Fico Assim sem Você.mp4
+!songs/03*.mp4
+!songs/04 - Alicia Keys - No One.mp4
+!songs/05 - Amy Winehouse - Valerie.mp4
 !songs/.gitkeep

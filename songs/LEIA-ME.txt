@@ -1,4 +1,4 @@
-Há 5 vídeos de exemplo (001–005) no repositório para você testar o app logo após o clone. O restante das músicas não está versionado.
+Há 5 músicas reais (01–05: Abba, Adriana Calcanhotto, Alicia Keys, Amy Winehouse) no repositório para você testar o app logo após o clone. O restante das músicas não está versionado.
 
 --- Como obter as músicas ---
 
