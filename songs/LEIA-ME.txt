@@ -8,11 +8,12 @@ Opção 1 — Solicitar a pasta pronta
   • WhatsApp: +55 27 99837-3487
   Depois coloque os .mp4 nesta pasta (songs/).
 
-Opção 2 — Adicionar músicas no Cursor
+Opção 2 — Adicionar músicas no Cursor (ou manualmente)
   Se você usa o Cursor com este projeto, há regras de contexto que ensinam a adicionar uma música nova:
   • Cole o link do vídeo do YouTube e informe o nome da música (e artista).
   • Com o plugin de download do YouTube habilitado, o assistente gera o comando (ex.: yt-dlp) com o número correto e o formato do nome.
   • A numeração é sempre sequencial (ou preenche lacunas); o nome do arquivo fica: NN - Artista - Música.mp4.
+  Instruções detalhadas (passo a passo e comando yt-dlp): docs/regras-adicionar-musicas.md
   Assim você pode baixar e incluir novas músicas direto na pasta songs/ sem precisar pedir o pacote completo.
 
 --- Formato dos arquivos ---
