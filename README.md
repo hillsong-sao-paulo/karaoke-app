@@ -1,6 +1,16 @@
 # Sistema de Karaokê
 
-App simples para listar e reproduzir vídeos de karaokê em tela cheia. Lê as músicas da pasta **`songs/`**, tem busca, filtro por letra inicial, ordenação (número, A–Z, Z–A) e opção de 1, 2 ou 3 colunas. Ao clicar em uma música, o vídeo abre em tela cheia (no segundo monitor, se houver HDMI/projetor).
+Sistema simples para listar e reproduzir vídeos de karaokê: **tela cheia** na lista e **tela cheia** no vídeo. Se houver um monitor ou projetor conectado via **HDMI**, o vídeo abre automaticamente em tela cheia na tela conectada, enquanto a lista continua no seu computador.
+
+![Tela da lista de músicas — 3 colunas](docs/images/tela-lista.png)
+
+A tela principal mostra todas as músicas da pasta `songs/`: busca por nome ou número, filtro por letra inicial (A–D, E–H, etc.), ordenação por número ou A–Z/Z–A e visualização em 1, 2 ou 3 colunas. Clique em uma música e o vídeo abre em tela cheia.
+
+![Lista com 2 colunas, filtro por letra e ordenação](docs/images/tela-lista-2.png)
+
+Você pode filtrar por letra (ex.: M–P), ordenar por A–Z ou Z–A e escolher 1, 2 ou 3 colunas. O vídeo sempre abre em **tela cheia**; com HDMI conectado, vai para a **segunda tela** (TV ou projetor). Pressione **Esc** na janela do vídeo para fechar.
+
+---
 
 ## O que você precisa
 
@@ -24,8 +34,18 @@ cd karaoke-app
 npm start
 ```
 
+O app abre **em tela cheia**. A lista fica em um monitor; ao clicar numa música, o vídeo abre em tela cheia (no HDMI, se estiver conectado).
+
 **Duplo clique (macOS):**  
-Abra a pasta do projeto e dê dois cliques no arquivo **Karaokê Sisterhood.command** (ou no script `.command` disponível). O app sobe em tela cheia.
+Abra a pasta do projeto e dê dois cliques no arquivo **.command** disponível. O Terminal abre e o app sobe em tela cheia.
+
+## Comportamento em tela cheia
+
+| O quê | Comportamento |
+|-------|----------------|
+| **App (lista)** | Abre em tela cheia no monitor principal. |
+| **Vídeo** | Abre em tela cheia. Se houver **HDMI** (segundo monitor/TV/projetor), o vídeo vai para essa tela; senão, abre no mesmo monitor. |
+| **Fechar vídeo** | Pressione **Esc** na janela do vídeo. |
 
 ## Adicionar novas músicas
 
@@ -54,7 +74,7 @@ O app fica em `dist/mac-arm64/`. Em algumas versões do macOS o .app pode falhar
 
 - **Esc** no campo de busca: limpa a busca
 - **Esc** na janela do vídeo: fecha a reprodução
-- O app abre em tela cheia; para sair: **Cmd+Ctrl+F** ou fechar a janela
+- Sair da tela cheia do app: **Cmd+Ctrl+F** ou fechar a janela
 
 ## De onde vem a lista
 
