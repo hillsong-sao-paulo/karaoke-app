@@ -1,0 +1,31 @@
+{
+  "name": "karaoke-sisterhood",
+  "version": "1.0.0",
+  "description": "App de listagem e abertura de músicas para o evento Karaokê Sisterhood Night",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --mac --dir",
+    "dist": "electron-builder --mac"
+  },
+  "build": {
+    "appId": "com.hillsong.karaoke-sisterhood",
+    "productName": "Karaokê Sisterhood",
+    "icon": "build/icon.png",
+    "mac": {
+      "category": "public.app-category.music",
+      "target": [
+        "dir"
+      ],
+      "icon": "build/icon.png"
+    },
+    "directories": {
+      "output": "dist"
+    }
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.0",
+    "pdfkit": "^0.17.2"
+  }
+}
