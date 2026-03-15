@@ -1,4 +1,4 @@
-Os arquivos de vídeo (músicas) não estão neste repositório.
+Há 5 vídeos de exemplo (001–005) no repositório para você testar o app logo após o clone. O restante das músicas não está versionado.
 
 --- Como obter as músicas ---
 
